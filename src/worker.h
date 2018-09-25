@@ -10,14 +10,14 @@ class Worker {
 	//TODO use priority queue
 	list<Task> tasks;
     public:
-	Task* nextTask();
+	Task& nextTask();
 	Worker(): name("default") {};
 	Worker(string name): name(name) {}; 
 	~Worker() = default;	
 	const string& getName() {return name;};
-	bool work(Task*);
+	bool work(Task& task);
 	// Add a new task for worker and return the current
 	// task queue size
-	int addTask(Task*);
+	int addTask(Task* task);
 };
 

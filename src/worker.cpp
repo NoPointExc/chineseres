@@ -2,34 +2,35 @@
 #include "worker.h"
 using namespace std;
 
-bool Worker::work(Task* task) {
-    task->process();
-    task->getPriority();
-    return true;
-}
 
 int Worker::addTask(Task* task) {
+    // TODO replace with logging
     cout << "adding task" << endl;
     this->tasks.push_back(*task);
     cout << "now tasks size is " << this->tasks.size() << endl;
     return tasks.size();
 }
  
-Task* Worker::nextTask() {
-    int index = 0;
+Task& Worker::nextTask() {
     Task* next_task = nullptr;
-    list<Task>::iterator tmp_it;
-    // TODO next_task == null??
     for (list<Task>::iterator it = this->tasks.begin(); it != this->tasks.end(); ++it) {
 	if (next_task == nullptr || next_task->getPriority() < it->getPriority()) {
-	    next_task = &(*it);
-	    tmp_it = it;
+	    next_task = &*it;
 	}
     }
-    if (next_task != nullptr) {
-	this->tasks.erase(tmp_it);
-    }
-    return next_task;
+    return *next_task;
+}
+
+bool Worker::work(Task& task) {
+    // TODO (1) process. & release 
+    task.process();
+    for (list<Task>::iterator it = this->tasks.begin(); it != this->tasks.end(); ++it) {
+	if (&*it == &task) {
+	    tasks.erase(it);
+	    return true;
+	}
+    } 
+    return false;
 }
 
 /**
