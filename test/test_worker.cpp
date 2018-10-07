@@ -9,7 +9,7 @@ namespace {
 	EXPECT_EQ("123", w->getName());
 	for (int i=0; i<10; i++) {
 	   Task *ti = new Task(20 - i);
-	    w->addTask(ti);
+	    w->addTask(*ti);
 	}
 	Task* prv = nullptr;
 	for (int i=0; i<10; i++) {
