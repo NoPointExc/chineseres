@@ -1,13 +1,23 @@
 #include <string>
-#include <list>
+#include <vector>
+#include <queue>
+
 #include "task.h"
+
+struct TaskCompare {
+  bool operator()(const Task* t1, const Task* t2) {
+    // TODO what's the type should be here??
+    return t1->getPriority() >= t2->getPriority();
+  }
+};
 
 class Worker {
     private:
 	const std::string name;
 	const int MAX_SEARCH_LEN = 10;
 	//TODO use priority queue
-	std::list<std::shared_ptr<Task>> tasks;
+	//std::list<std::shared_ptr<Task>> tasks;
+  std::priority_queue<std::shared_ptr<Task>, std::vector<std::shared_ptr<Task>>, TaskCompare> tasks;
     public:
 	Task& nextTask();
 	Worker(): name("default") {};
