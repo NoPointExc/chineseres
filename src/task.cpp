@@ -11,7 +11,7 @@ using namespace std;
 **/
 
 
-void Task::process() {
+void Task::process() const{
   std::string class_name  = typeid(this).name();
   int process_time = this->TIME_MS * this->SPEED_X;
   cout << "Begin process " << class_name << " and will process for "<<process_time<<"ms...." << endl;

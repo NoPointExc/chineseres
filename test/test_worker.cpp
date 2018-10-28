@@ -19,8 +19,7 @@ namespace {
   	    const Task* next = w->nextTask();
   	    if (prv != nullptr) {
       		ASSERT_GE(prv->getPriority(), next->getPriority());
-          // TODO fix work() here
-      		// ASSERT_GE(w->work(prv), true);
+      		ASSERT_EQ(w->work(prv), true);
   	    }
   	    prv = next;
   	}

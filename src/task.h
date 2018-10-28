@@ -8,6 +8,6 @@ public:
   static const int SPEED_X = 100000;
   static const int TIME_MS = 10;
   unsigned getPriority() const {return this->priority;};
-  void process();
+  void process() const;
   ~Task() = default;
 };
