@@ -3,21 +3,26 @@
 using namespace std;
 
 
-int Worker::addTask(Task& task) {
+int Worker::addTask(Task task) {
     // TODO replace with logging
     cout << "adding task" << endl;
-    auto _task = std::shared_ptr<Task>(&task);
-    this->tasks.push(_task);
+    this->tasks.push(std::move(task));
     cout << "now tasks size is " << this->tasks.size() << endl;
     return tasks.size();
 }
 
-Task& Worker::nextTask() {
+const Task* Worker::nextTask() {
   // TODO check null
-  return this->tasks->pop()
+  if (this->tasks.empty()) {
+    return nullptr;
+  }
+  // return nullptr;
+  return &(this->tasks.top());
+  // typeid(t).name();
+  // return t;
 }
 
-bool Worker::work(Task& task) {
-    task.process();
+bool Worker::work(const Task* task) {
+    task->process();
     return true;
 }
