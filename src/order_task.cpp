@@ -1,21 +1,14 @@
-#include "order_task.h"
 #include <unistd.h>
 #include <iostream>
-#include "task.cpp"
-using namespace std;
+#ifndef __TASK_H_
+#define __TASK_H_
+#include "task.h"
+#endif
 
 class OrderTask : public Task {
 public:
   void process() {
-    cout << "processing a order..." << endl;
-    //Foo::printStuff();
+    std::cout << "processing a order..." << std::endl;
     Task::process();
   }
 };
-
-int main(void) {
-  OrderTask t;
-  //t.setPiority(3);
-  //cout << t.getPiority() << endl;
-  t.process();
-}

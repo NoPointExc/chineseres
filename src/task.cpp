@@ -1,5 +1,5 @@
 #include <iostream>
-#include "task.h"
+#include "order_task.h"
 #include <unistd.h>
 using namespace std;
 
@@ -14,16 +14,8 @@ using namespace std;
 void Task::process() const{
   std::string class_name  = typeid(this).name();
   int process_time = this->TIME_MS * this->SPEED_X;
-  cout << "Begin process " << class_name << " and will process for "<<process_time<<"ms...." << endl;
-  cout << "Priority = " << this->getPriority() << endl;
+  std::cout << "Begin process " << class_name << " and will process for "<<process_time<<"ms...." << std::endl;
+  std::cout << "Priority = " << this->getPriority() << std::endl;
   usleep(process_time);
-  cout << "Complete class_name" << endl;
+  std::cout << "Complete class_name" << std::endl;
 }
-
-
- //int main(void) {
- //  Task t;
-   //t.setPiority(3);
-   //cout << t.getPriority() << endl;
-  // t.process();
-// }
